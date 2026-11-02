@@ -2,7 +2,7 @@
 
 **Bayesian design and analysis for multi-arm trials with binary endpoints**
 
-Version 0.6.0 · R package repository: **ST1_1_Bayesian_Design_Ana**
+Version 0.6.0 · R package repository: **ST1_2_Bayesian_Design_Ana**
 
 `BayesianDesignAna` provides Bayesian operating-characteristic simulation, sample-size planning with exact allocation ratios, optional historical-control borrowing, MAP prior effective sample size (ESS) assessment, and Bayesian analysis of binary endpoints. The common-control design functions support one or more active doses. Functions for patient-level Bayesian logistic regression support zero or more stratification factors, including categorical factors with multiple levels.
 
@@ -14,7 +14,7 @@ Version 0.6.0 · R package repository: **ST1_1_Bayesian_Design_Ana**
 
 ```r
 install.packages("remotes")
-remotes::install_github("JinhaoZou/ST1_1_Bayesian_Design_Ana", upgrade="never")
+remotes::install_github("JinhaoZou/ST1_2_Bayesian_Design_Ana", upgrade="never")
 library(BayesianDesignAna)
 packageVersion("BayesianDesignAna")
 ```
@@ -28,7 +28,7 @@ library(BayesianDesignAna)
 packageVersion("BayesianDesignAna")
 ```
 
-The GitHub **repository** name and the installed R **package** name are different intentionally. Use `JinhaoZou/ST1_1_Bayesian_Design_Ana` in `install_github()` and `BayesianDesignAna` in `library()`. A browser-only publishing walkthrough is available in [GITHUB_UPLOAD_GUIDE.md](GITHUB_UPLOAD_GUIDE.md).
+The GitHub **repository** name and the installed R **package** name are different intentionally. Use `JinhaoZou/ST1_1_Bayesian_Design_Ana` in `install_github()` and `BayesianDesignAna` in `library()`. 
 
 To test a local source folder:
 
@@ -90,7 +90,7 @@ power$overall_power # Probability >= 1 dose succeeds, for overall='any'
 power$scenario
 ```
 
-`overall="any"` (default) requires **at least one** dose to succeed; `overall="all"` requires **every** dose. The default multiplicity convention is `"hochberg"`; alternatives are `"none"`, `"bonferroni"`, `"holm"`, and `"BH"`. These methods adjust Bayesian posterior-tail decision scores, not frequentist p-values, and do not automatically establish conventional FWER or FDR control.
+`overall="any"` (default) requires **at least one** dose to succeed; `overall="all"` requires **every** dose. The default multiplicity convention is `"hochberg"`; alternatives are `"none"`, `"bonferroni"`, `"holm"`, and `"BH"` (BH = Benjamini–Hochberg procedure). These methods adjust Bayesian posterior-tail decision scores, not frequentist p-values, and do not automatically establish conventional FWER or FDR control.
 
 Two ways to specify borrowing in **design** functions (choose only one):
 
