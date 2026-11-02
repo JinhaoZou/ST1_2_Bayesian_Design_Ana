@@ -1,7 +1,7 @@
 # BayesianDesignAna
 
 **Bayesian sample-size planning and analysis for multi-arm trials with binary endpoints**  
-R package: `BayesianDesignAna` · Version: **0.6.1** · GitHub repository: **`ST1_2_Bayesian_Design_Ana`**
+R package: `BayesianDesignAna` · Version: **0.6.0** · GitHub repository: **`ST1_2_Bayesian_Design_Ana`**
 
 `BayesianDesignAna` helps researchers plan trials with a shared placebo/control arm, compare multiple doses, and assess whether historical control information could be borrowed. It includes simple Beta-binomial simulations and a separate patient-level Bayesian logistic regression model with covariate adjustment.
 
