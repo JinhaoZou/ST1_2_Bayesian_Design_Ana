@@ -137,9 +137,9 @@ ss <- design_sample_size(
   borrowing_prop = .40,
   search = "two_stage",
   initial_step = 5,
-  n_sim_initial = 500,
+  n_sim_initial = 100,
   refine_span = 5,
-  n_sim = 10000,
+  n_sim = 1000,
   overall = "any",
   seed = 123,
   plot = TRUE
@@ -189,8 +189,8 @@ curves <- plot_power(
   borrowing_prop = .40,
   target_power = .80,
   search = "two_stage",
-  n_sim_initial = 300,
-  n_sim = 2000,
+  n_sim_initial = 100,
+  n_sim = 1000,
   table_max_cols = 10,
   plot = TRUE
 )
@@ -246,7 +246,11 @@ The result contains `allowed_ess`, `restricted_ess`, and `borrowed_fraction`. Th
 ### `historical_map_ess()` — estimate MAP prior ESS using RBesT
 
 ```r
-install.packages("RBesT")   # Run once if needed
+install.packages(
+  "RBesT",
+  repos = "https://cloud.r-project.org",
+  type = "binary"
+)    # Run once if needed
 historical <- data.frame(
   study = paste0("Study", 1:6),
   n = c(154, 163, 183, 180, 72, 74),
@@ -281,27 +285,6 @@ fit_bin
 
 `responses` is the number of responders per arm; `n` is the number of observed patients. `control_prior` and `treatment_prior` are Beta shape pairs (not response rates). For explicit borrowing, use `borrowing_prior()` first and supply its `alpha` and `beta` as `control_prior`. Results include posterior mean risk differences (`rd_mean`), 95% **equal-tailed** bounds (`rd_lower`, `rd_upper`), probability of superiority (`prob_superiority`), adjusted posterior-tail scores, and decisions (`success`). `n_post`, `margin`, `alpha`, `multiplicity`, and `seed` have the meanings defined above.
 
-### `simulate_power()` and `find_sample_size()` — lower-level functions
-
-These expose the underlying simulation and a simple candidate search. For most new analyses, use the higher-level `design_power()` and `design_sample_size()`.
-
-```r
-simulate_power(
-  n = c(Placebo=40, Dose1=40),
-  response_rates = c(Placebo=.30, Dose1=.50),
-  borrow_ess = 20, n_sim = 200, n_post = 500
-)
-
-find_sample_size(
-  total_n = candidate_totals(c(Placebo=1, Dose1=1), 40, 100),
-  ratios = c(Placebo=1, Dose1=1),
-  response_rates = c(Placebo=.30, Dose1=.50),
-  target_power = .80, target = "any",
-  n_sim = 200, n_post = 500
-)
-```
-
-`simulate_power()` uses `borrow_ess` instead of `borrowed_n`. `find_sample_size()` accepts `target="any"`, `"all"`, or a specific dose name to select which power criterion to optimize. Both support additional simulation arguments via their documented interfaces.
 
 ## 6. Analyze patient-level data with covariate adjustment
 
@@ -384,7 +367,7 @@ Use `?design_sample_size`, `?analyze_logistic`, or `help(package="BayesianDesign
 
 **Research-use considerations:** This package is development software. Confirm simulation results with larger `n_sim` near the selected N; study global and partial-null operating characteristics of the Bayesian multiplicity decision rule; assess prior–data conflict when borrowing; and validate the custom logistic MCMC sampler before relying on results for confirmatory decisions. A successful R package check does not establish statistical validity.
 
-## References and acknowledgments
+## References
 
 The historical MAP prior ESS helper builds on **RBesT (R Bayesian Evidence Synthesis Tools)**:
 
