@@ -6,7 +6,7 @@ Description: Simulate Bayesian multi-arm binary endpoint trials with historical
     control borrowing and multiplicity decisions, plan sample sizes, and fit
     Bayesian logistic models with stratification covariates. Provides design
     prior effective sample size summaries and optional meta-analytic predictive
-    priors through RBesT. Defaults to baseline Jeffreys Beta priors for binomial endpoints without automatic historical borrowing. Includes configurable HPD and equal-tailed credible intervals and SAS-style posterior summaries. Requires independent validation before use in clinical trials.
+    priors through RBesT. Requires independent validation before use in clinical trials.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Depends: R (>= 4.1.0)
